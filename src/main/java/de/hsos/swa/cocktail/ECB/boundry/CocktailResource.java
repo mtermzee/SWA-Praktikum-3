@@ -27,7 +27,6 @@ public class CocktailResource {
     public Response getCocktailByName(@PathParam("name") String name) {
         List<Cocktail> cocktails = cocktailService.getCocktailByName(name);
 
-        System.out.println(cocktails);
         if (!cocktails.isEmpty()) {
             return Response.ok(cocktails).build();
         }
