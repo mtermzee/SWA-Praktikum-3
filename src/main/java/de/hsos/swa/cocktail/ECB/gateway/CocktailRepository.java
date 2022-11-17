@@ -11,16 +11,16 @@ import javax.ws.rs.core.MediaType;
 import de.hsos.swa.cocktail.ECB.control.dto.CocktailsDTO;
 import de.hsos.swa.cocktail.ECB.entity.Barkeeper;
 import de.hsos.swa.cocktail.ECB.entity.Cocktail;
+import de.hsos.swa.cocktail.ECB.gateway.api.CocktailAPI;
 import io.vertx.core.json.JsonObject;
 
 @ApplicationScoped
 public class CocktailRepository implements Barkeeper {
     CocktailsDTO cocktailsDTO = new CocktailsDTO();
-    private final String PATH = "https://www.thecocktaildb.com/api/json/v1/1/";
 
     @Override
     public List<Cocktail> getCocktailByName(String name) {
-        String url = PATH + "search.php?s=" + name;
+        String url = CocktailAPI.PATH + CocktailAPI.SEARCH + name;
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(url);
         JsonObject jsonObject = webTarget.request().accept(MediaType.APPLICATION_JSON).get(JsonObject.class);
