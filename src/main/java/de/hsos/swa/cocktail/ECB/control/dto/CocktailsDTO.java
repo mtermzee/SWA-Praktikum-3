@@ -25,7 +25,7 @@ public class CocktailsDTO {
         Cocktail cocktail = new Cocktail();
         cocktail.setName(cocktailJSON.getString("strDrink"));
         cocktail.setDescription(cocktailJSON.getString("strInstructionsDE"));
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 10; i++) {
             String ingredient = cocktailJSON.getString("strIngredient" + String.valueOf(i + 1));
             if (ingredient != null) {
                 cocktail.addIngredient(ingredient);
