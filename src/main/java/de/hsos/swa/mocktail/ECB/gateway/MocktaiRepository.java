@@ -148,4 +148,15 @@ public class MocktaiRepository implements Barkeeper {
         return List.copyOf(mocktails.values());
     }
 
+    @Override
+    public Mocktail getMocktailByName(String name) {
+        for (Mocktail mocktail : mocktails.values()) {
+            if (mocktail.getName().equals(name)) {
+                return mocktail;
+            }
+        }
+        return null;
+
+    }
+
 }

@@ -6,6 +6,8 @@ public interface Barkeeper {
     // Mocktailes
     Mocktail getMocktailById(int id);
 
+    Mocktail getMocktailByName(String name);
+
     List<Mocktail> getMocktails();
 
     int addMocktail(String name);

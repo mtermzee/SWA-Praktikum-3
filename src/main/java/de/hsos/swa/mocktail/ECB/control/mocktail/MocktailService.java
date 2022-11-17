@@ -32,4 +32,8 @@ public class MocktailService {
     public boolean deleteMocktail(int id) {
         return barkeeper.deleteMocktail(id);
     }
+
+    public Mocktail getMocktailByName(String name) {
+        return barkeeper.getMocktailByName(name);
+    }
 }

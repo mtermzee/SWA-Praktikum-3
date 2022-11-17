@@ -66,6 +66,16 @@ public class MocktailResource {
         return Response.status(Status.NOT_FOUND).entity("No mocktail was found").type("text/plain").build();
     }
 
+    @GET
+    @Path("search/{name}")
+    public Response getMocktailByName(@PathParam("name") String name) {
+        Mocktail mocktail = this.mocktailService.getMocktailByName(name);
+        if (mocktail != null)
+            return Response.ok(mocktail).build();
+
+        return Response.status(Status.NOT_FOUND).entity("No mocktail was found").type("text/plain").build();
+    }
+
     @POST
     @Path("{mocktail}")
     public Response addMocktail(@PathParam("mocktail") String mocktail) {
