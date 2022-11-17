@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: de.hsos.swa.mocktail.ECB.boundry.IngredientResourceTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.913 s - in de.hsos.swa.mocktail.ECB.boundry.IngredientResourceTest
