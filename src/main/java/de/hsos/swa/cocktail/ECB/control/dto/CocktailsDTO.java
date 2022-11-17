@@ -4,28 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hsos.swa.cocktail.ECB.entity.Cocktail;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 
 public class CocktailsDTO {
-    String name;
-    List<String> ingredients = new ArrayList<>();
-    String description;
 
     public CocktailsDTO() {
     }
 
-    public CocktailsDTO(Cocktail cocktail) {
-        this.name = cocktail.getName();
-        this.ingredients = cocktail.getIngredients();
-        this.description = cocktail.getDescription();
-    }
-
-    public static class CocktailKonverter {
-        public static CocktailsDTO konvertiere(Cocktail cocktail) {
-            return new CocktailsDTO(cocktail);
+    public List<Cocktail> getDataFromJSON(JsonObject json) {
+        JsonArray drinks = json.getJsonArray("drinks");
+        ArrayList<Cocktail> cocktails = new ArrayList<>();
+        for (Object o : drinks) {
+            cocktails.add(getCocktailInfolFromJsonObject((JsonObject) o));
         }
+        return cocktails;
     }
 
-    public CocktailsDTO cocktailToDTO(Cocktail cocktail) {
-        return CocktailKonverter.konvertiere(cocktail);
+    private Cocktail getCocktailInfolFromJsonObject(JsonObject cocktailJSON) {
+        Cocktail cocktail = new Cocktail();
+        cocktail.setName(cocktailJSON.getString("strDrink"));
+        cocktail.setDescription(cocktailJSON.getString("strInstructionsDE"));
+        for (int i = 0; i < 15; i++) {
+            String ingredient = cocktailJSON.getString("strIngredient" + String.valueOf(i + 1));
+            if (ingredient != null) {
+                cocktail.addIngredient(ingredient);
+            }
+        }
+        return cocktail;
     }
+
 }

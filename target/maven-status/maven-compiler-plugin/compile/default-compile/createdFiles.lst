@@ -6,7 +6,6 @@ de/hsos/swa/mocktail/ECB/control/mocktail/MocktailService.class
 de/hsos/swa/mocktail/ECB/gateway/MocktaiRepository.class
 de/hsos/swa/mocktail/ECB/gateway/UserChecker.class
 de/hsos/swa/mocktail/ECB/boundry/IngredientResource.class
-de/hsos/swa/mocktail/Start.class
 de/hsos/swa/mocktail/ECB/boundry/MocktailResource.class
 de/hsos/swa/mocktail/ECB/entity/Barkeeper.class
 de/hsos/swa/mocktail/ECB/entity/User.class

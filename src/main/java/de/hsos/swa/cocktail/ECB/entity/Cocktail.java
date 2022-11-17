@@ -57,4 +57,10 @@ public class Cocktail {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Cocktail [id=" + id + ", name=" + name + ", ingredients=" + ingredients + ", description=" + description
+                + "]";
+    }
+
 }
