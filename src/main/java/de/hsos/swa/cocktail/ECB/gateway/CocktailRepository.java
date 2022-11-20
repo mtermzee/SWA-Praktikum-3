@@ -8,11 +8,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import de.hsos.swa.cocktail.ECB.control.dto.CocktailDTO;
 import de.hsos.swa.cocktail.ECB.control.dto.FactoryDTO;
+import de.hsos.swa.cocktail.ECB.control.dto.IngredientDTO;
 import de.hsos.swa.cocktail.ECB.entity.Barkeeper;
-import de.hsos.swa.cocktail.ECB.entity.Cocktail;
 import de.hsos.swa.cocktail.ECB.gateway.api.CocktailAPI;
-import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 import io.vertx.core.json.JsonObject;
 
 @ApplicationScoped
@@ -20,13 +20,13 @@ public class CocktailRepository implements Barkeeper {
     FactoryDTO factoryDTO = new FactoryDTO();
 
     @Override
-    public List<Cocktail> getCocktailByName(String cocktail) {
+    public List<CocktailDTO> getCocktailByName(String cocktail) {
         String url = CocktailAPI.PATH + CocktailAPI.COCKTAIL + cocktail;
         return factoryDTO.getDataFromJSON(getJSON(url));
     }
 
     @Override
-    public List<Ingredient> getIngredientByName(String ingredient) {
+    public List<IngredientDTO> getIngredientByName(String ingredient) {
         String url = CocktailAPI.PATH + CocktailAPI.INGREDIENT + ingredient;
         return factoryDTO.getDataFromJSONForIngredients(getJSON(url));
     }

@@ -2,10 +2,11 @@ package de.hsos.swa.cocktail.ECB.entity;
 
 import java.util.List;
 
-import de.hsos.swa.mocktail.ECB.entity.Ingredient;
+import de.hsos.swa.cocktail.ECB.control.dto.CocktailDTO;
+import de.hsos.swa.cocktail.ECB.control.dto.IngredientDTO;
 
 public interface Barkeeper {
-    public List<Cocktail> getCocktailByName(String name);
+    public List<CocktailDTO> getCocktailByName(String name);
 
-    public List<Ingredient> getIngredientByName(String ingredient);
+    public List<IngredientDTO> getIngredientByName(String ingredient);
 }

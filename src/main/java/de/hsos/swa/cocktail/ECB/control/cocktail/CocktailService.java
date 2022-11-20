@@ -5,9 +5,9 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import de.hsos.swa.cocktail.ECB.control.dto.CocktailDTO;
+import de.hsos.swa.cocktail.ECB.control.dto.IngredientDTO;
 import de.hsos.swa.cocktail.ECB.entity.Barkeeper;
-import de.hsos.swa.cocktail.ECB.entity.Cocktail;
-import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 
 @ApplicationScoped
 public class CocktailService {
@@ -15,11 +15,11 @@ public class CocktailService {
     @Inject
     Barkeeper barkeeper;
 
-    public List<Cocktail> getCocktailByName(String name) {
+    public List<CocktailDTO> getCocktailByName(String name) {
         return barkeeper.getCocktailByName(name);
     }
 
-    public List<Ingredient> getIngredientByName(String ingredient) {
+    public List<IngredientDTO> getIngredientByName(String ingredient) {
         return barkeeper.getIngredientByName(ingredient);
     }
 

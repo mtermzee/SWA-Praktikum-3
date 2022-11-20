@@ -13,8 +13,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import de.hsos.swa.cocktail.ECB.control.cocktail.CocktailService;
-import de.hsos.swa.cocktail.ECB.entity.Cocktail;
-import de.hsos.swa.mocktail.ECB.entity.Ingredient;
+import de.hsos.swa.cocktail.ECB.control.dto.CocktailDTO;
+import de.hsos.swa.cocktail.ECB.control.dto.IngredientDTO;
 
 @Path("/cocktails")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +26,7 @@ public class CocktailResource {
     @GET
     @Path("{name}")
     public Response getCocktailByName(@PathParam("name") String name) {
-        List<Cocktail> cocktails = cocktailService.getCocktailByName(name);
+        List<CocktailDTO> cocktails = cocktailService.getCocktailByName(name);
 
         if (!cocktails.isEmpty()) {
             return Response.ok(cocktails).build();
@@ -38,7 +38,7 @@ public class CocktailResource {
     @GET
     @Path("ingredients/{name}")
     public Response getIngredientByName(@PathParam("name") String name) {
-        List<Ingredient> ingredients = cocktailService.getIngredientByName(name);
+        List<IngredientDTO> ingredients = cocktailService.getIngredientByName(name);
 
         if (!ingredients.isEmpty()) {
             return Response.ok(ingredients).build();
