@@ -33,7 +33,7 @@ public class MocktailService {
         return barkeeper.deleteMocktail(id);
     }
 
-    public Mocktail getMocktailByName(String name) {
-        return barkeeper.getMocktailByName(name);
+    public List<Mocktail> getMocktailByName(String name) {
+        return barkeeper.searchMocktailByName(name);
     }
 }

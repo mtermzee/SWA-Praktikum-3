@@ -45,4 +45,8 @@ public class IngredientService {
         return barkeeper.removeIngredientFromMocktail(ingredientID, mocktailID);
     }
 
+    public List<Ingredient> getIngredientByName(String name) {
+        return barkeeper.searchIngredientByName(name);
+    }
+
 }

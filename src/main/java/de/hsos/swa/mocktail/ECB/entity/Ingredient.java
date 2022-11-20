@@ -3,7 +3,7 @@ package de.hsos.swa.mocktail.ECB.entity;
 public class Ingredient {
     int id;
     String name;
-    String author;
+    String description;
 
     public Ingredient() {
     }
@@ -13,10 +13,10 @@ public class Ingredient {
         this.name = name;
     }
 
-    public Ingredient(int id, String name, String author) {
+    public Ingredient(int id, String name, String description) {
         this.id = id;
         this.name = name;
-        this.author = author;
+        this.description = description;
     }
 
     public int getId() {
@@ -35,12 +35,12 @@ public class Ingredient {
         this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Ingredient {
         int result = 1;
         result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((author == null) ? 0 : author.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         return result;
     }
 
@@ -69,17 +69,17 @@ public class Ingredient {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (author == null) {
-            if (other.author != null)
+        if (description == null) {
+            if (other.description != null)
                 return false;
-        } else if (!author.equals(other.author))
+        } else if (!description.equals(other.description))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Ingredient [id=" + id + ", name=" + name + ", author=" + author + "]";
+        return "Ingredient [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
 
 }

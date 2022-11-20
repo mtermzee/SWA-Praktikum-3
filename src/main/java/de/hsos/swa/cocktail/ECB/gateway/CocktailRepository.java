@@ -8,30 +8,35 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import de.hsos.swa.cocktail.ECB.control.dto.CocktailsDTO;
+import de.hsos.swa.cocktail.ECB.control.dto.FactoryDTO;
 import de.hsos.swa.cocktail.ECB.entity.Barkeeper;
 import de.hsos.swa.cocktail.ECB.entity.Cocktail;
 import de.hsos.swa.cocktail.ECB.gateway.api.CocktailAPI;
+import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 import io.vertx.core.json.JsonObject;
 
 @ApplicationScoped
 public class CocktailRepository implements Barkeeper {
-    CocktailsDTO cocktailsDTO = new CocktailsDTO();
+    FactoryDTO factoryDTO = new FactoryDTO();
 
     @Override
-    public List<Cocktail> getCocktailByName(String name) {
-        String url = CocktailAPI.PATH + CocktailAPI.SEARCH + name;
+    public List<Cocktail> getCocktailByName(String cocktail) {
+        String url = CocktailAPI.PATH + CocktailAPI.COCKTAIL + cocktail;
+        return factoryDTO.getDataFromJSON(getJSON(url));
+    }
+
+    @Override
+    public List<Ingredient> getIngredientByName(String ingredient) {
+        String url = CocktailAPI.PATH + CocktailAPI.INGREDIENT + ingredient;
+        return factoryDTO.getDataFromJSONForIngredients(getJSON(url));
+    }
+
+    public JsonObject getJSON(String url) {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(url);
         JsonObject jsonObject = webTarget.request().accept(MediaType.APPLICATION_JSON).get(JsonObject.class);
         client.close();
-        return cocktailsDTO.getDataFromJSON(jsonObject);
-    }
-
-    @Override
-    public List<Cocktail> getIngredientByName(String ingredient) {
-        // TODO Auto-generated method stub
-        return null;
+        return jsonObject;
     }
 
 }

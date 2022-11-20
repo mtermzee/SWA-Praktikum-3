@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response.Status;
 
 import de.hsos.swa.cocktail.ECB.control.cocktail.CocktailService;
 import de.hsos.swa.cocktail.ECB.entity.Cocktail;
+import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 
 @Path("/cocktails")
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,5 +33,17 @@ public class CocktailResource {
         }
 
         return Response.status(Status.NOT_FOUND).entity("No cocktails was found").type("text/plain").build();
+    }
+
+    @GET
+    @Path("ingredients/{name}")
+    public Response getIngredientByName(@PathParam("name") String name) {
+        List<Ingredient> ingredients = cocktailService.getIngredientByName(name);
+
+        if (!ingredients.isEmpty()) {
+            return Response.ok(ingredients).build();
+        }
+
+        return Response.status(Status.NOT_FOUND).entity("No ingredients was found").type("text/plain").build();
     }
 }

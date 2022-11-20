@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hsos.swa.cocktail.ECB.entity.Cocktail;
+import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
-public class CocktailsDTO {
+public class FactoryDTO {
 
-    public CocktailsDTO() {
+    public FactoryDTO() {
     }
 
     public List<Cocktail> getDataFromJSON(JsonObject json) {
@@ -32,6 +33,22 @@ public class CocktailsDTO {
             }
         }
         return cocktail;
+    }
+
+    public List<Ingredient> getDataFromJSONForIngredients(JsonObject json) {
+        JsonArray drinks = json.getJsonArray("ingredients");
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        for (Object o : drinks) {
+            ingredients.add(getIngredientInfolFromJsonObject((JsonObject) o));
+        }
+        return ingredients;
+    }
+
+    private Ingredient getIngredientInfolFromJsonObject(JsonObject cocktailJSON) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(cocktailJSON.getString("strIngredient"));
+        ingredient.setDescription(cocktailJSON.getString("strDescription"));
+        return ingredient;
     }
 
 }

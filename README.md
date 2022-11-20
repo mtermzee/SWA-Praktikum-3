@@ -20,6 +20,28 @@ You can run your application in dev mode that enables live coding using:
  mvn quarkus:add-extension -Dextensions="smallrye-metrics"
  mvn quarkus:add-extension -Dextensions="smallrye-fault-tolerance"
  mvn quarkus:add-extension -Dextensions="rest-client,rest-client-jackson"
+
+// maven-quarkus-quickstart
+// https://www.youtube.com/playlist?list=PL6oD2syjfW7ADAkICQr-SQcEqsenVPfqg -
+// https://quarkus.io/guides/centralized-log-management - Logging mit Quarkus
+// https://quarkus.io/guides/smallrye-metrics - Metrics mit Quarkus
+// https://www.youtube.com/watch?v=e7iqCQSCGo4 - MicroProfile mit Quarkus
+// https://quarkus.io/guides/smallrye-fault-tolerance - FA-Tolerance mit Quarkus
+// https://www.youtube.com/watch?v=NpTamexmW_k - Timeout mit Quarkus
+//error by @Gauge Unable to export metric
+
+check message service:
+curl http://localhost:8080/message
+
+check Mocktail-App: Metriken: path change in application.properties
+http://localhost:8080/q/metrics/application
+http://localhost:8080/q/metrics/application?Accept
+path has changed to:
+http://localhost:8080/q/app_metrics/application
+
+Test Fallback:
+http://localhost:8080/mocktails/recommendations
+
 ```
 
 > **_NOTE:_** Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.

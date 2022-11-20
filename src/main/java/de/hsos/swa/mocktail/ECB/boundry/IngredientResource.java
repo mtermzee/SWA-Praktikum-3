@@ -17,12 +17,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.info.Info;
+
 import de.hsos.swa.mocktail.ECB.control.ingredient.IngredientService;
 import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 
 @Path("/ingredients")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@OpenAPIDefinition(info = @Info(title = "Ingredients", version = "1.2", description = "You can get/add/edit your drinks "))
 
 public class IngredientResource {
     // Inject - for dependency injection Initialize the MocktailRepository
@@ -57,6 +62,17 @@ public class IngredientResource {
             return Response.ok(ingredient).build();
 
         return Response.status(Status.NOT_FOUND).entity("No ingredient was found").type("text/plain").build();
+    }
+
+    @GET
+    @Path("search/{name}")
+    @Operation(summary = "Search Ingredient by name")
+    public Response getMocktailByName(@PathParam("name") String name) {
+        List<Ingredient> ingredients = this.ingredientService.getIngredientByName(name);
+        if (!ingredients.isEmpty())
+            return Response.ok(ingredients).build();
+
+        return Response.status(Status.NOT_FOUND).entity("No ingredients was found").type("text/plain").build();
     }
 
     @POST

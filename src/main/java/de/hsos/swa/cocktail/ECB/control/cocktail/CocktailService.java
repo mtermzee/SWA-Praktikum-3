@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import de.hsos.swa.cocktail.ECB.entity.Barkeeper;
 import de.hsos.swa.cocktail.ECB.entity.Cocktail;
+import de.hsos.swa.mocktail.ECB.entity.Ingredient;
 
 @ApplicationScoped
 public class CocktailService {
@@ -17,4 +18,9 @@ public class CocktailService {
     public List<Cocktail> getCocktailByName(String name) {
         return barkeeper.getCocktailByName(name);
     }
+
+    public List<Ingredient> getIngredientByName(String ingredient) {
+        return barkeeper.getIngredientByName(ingredient);
+    }
+
 }

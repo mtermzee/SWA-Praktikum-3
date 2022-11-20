@@ -1,5 +1,6 @@
 package de.hsos.swa.mocktail.ECB.gateway;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,14 +150,28 @@ public class MocktaiRepository implements Barkeeper {
     }
 
     @Override
-    public Mocktail getMocktailByName(String name) {
+    public List<Mocktail> searchMocktailByName(String name) {
+        List<Mocktail> matchingMocktails = new ArrayList<>();
+
         for (Mocktail mocktail : mocktails.values()) {
-            if (mocktail.getName().equals(name)) {
-                return mocktail;
+            if (mocktail.getName().toLowerCase().contains(name.toLowerCase())) {
+                matchingMocktails.add(mocktail);
             }
         }
-        return null;
+        return matchingMocktails;
 
+    }
+
+    @Override
+    public List<Ingredient> searchIngredientByName(String name) {
+        List<Ingredient> matchingIngredients = new ArrayList<>();
+
+        for (Ingredient ingredient : ingredients.values()) {
+            if (ingredient.getName().toLowerCase().contains(name.toLowerCase())) {
+                matchingIngredients.add(ingredient);
+            }
+        }
+        return matchingIngredients;
     }
 
 }

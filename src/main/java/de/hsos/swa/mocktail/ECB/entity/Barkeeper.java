@@ -6,9 +6,9 @@ public interface Barkeeper {
     // Mocktailes
     Mocktail getMocktailById(int id);
 
-    Mocktail getMocktailByName(String name);
-
     List<Mocktail> getMocktails();
+
+    List<Mocktail> searchMocktailByName(String name);
 
     int addMocktail(String name);
 
@@ -20,6 +20,8 @@ public interface Barkeeper {
     Ingredient getIngredientById(int id);
 
     List<Ingredient> getIngredients();
+
+    List<Ingredient> searchIngredientByName(String name);
 
     int createIngredient(String name);
 
