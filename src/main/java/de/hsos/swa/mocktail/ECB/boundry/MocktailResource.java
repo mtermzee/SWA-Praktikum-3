@@ -102,7 +102,8 @@ public class MocktailResource {
     @Operation(summary = "Get mocktail by id")
     @Counted(name = "COUNT-getMocktailById", description = "Count how many times the getMocktailById() was called")
     @Timed(name = "TIME-getMocktailById", description = "How long it takes to invoke the getMocktailById()", unit = MetricUnits.MILLISECONDS)
-    @Gauge(name = "GAUGE-getMocktailById", description = "Time of getMocktailById()", unit = MetricUnits.NONE)
+    // @Gauge(name = "GAUGE-getMocktailById", description = "Time of
+    // getMocktailById()", unit = MetricUnits.NONE)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
     public Response getMocktailById(@PathParam("id") int id) {
         log.info("Get mocktail by id: " + id);
@@ -180,7 +181,8 @@ public class MocktailResource {
     @Operation(summary = "Delete mocktail by id")
     @Counted(name = "COUNT-deleteMocktail", description = "Count how many times the deleteMocktail() was called")
     @Timed(name = "TIME-deleteMocktail", description = "How long it takes to invoke the deleteMocktail()", unit = MetricUnits.MILLISECONDS)
-    @Gauge(name = "GAUGE-deleteMocktail", description = "Time of deleteMocktail()", unit = MetricUnits.NONE)
+    // @Gauge(name = "GAUGE-deleteMocktail", description = "Time of
+    // deleteMocktail()", unit = MetricUnits.NONE)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
     public Response deleteMocktail(@PathParam("id") int id) {
         log.info("Delete mocktail by id: " + id);
