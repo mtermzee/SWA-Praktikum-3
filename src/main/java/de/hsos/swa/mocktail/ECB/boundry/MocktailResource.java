@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
@@ -74,6 +75,7 @@ public class MocktailResource {
     @Timed(name = "TIME-getMocktails", description = "How long it takes to invoke the getMocktails()", unit = MetricUnits.MILLISECONDS)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
     @Timeout(value = 2000, unit = ChronoUnit.MILLIS)
+    @CircuitBreaker(failureRatio = 0.25, requestVolumeThreshold = 10)
     @Fallback(fallbackMethod = "recommendation")
     @Retry(maxRetries = 3, delay = 2000)
     public Response getMocktails() {
@@ -102,6 +104,7 @@ public class MocktailResource {
     @Operation(summary = "Get mocktail by id")
     @Counted(name = "COUNT-getMocktailById", description = "Count how many times the getMocktailById() was called")
     @Timed(name = "TIME-getMocktailById", description = "How long it takes to invoke the getMocktailById()", unit = MetricUnits.MILLISECONDS)
+    @CircuitBreaker(failureRatio = 0.25, requestVolumeThreshold = 10)
     // @Gauge(name = "GAUGE-getMocktailById", description = "Time of
     // getMocktailById()", unit = MetricUnits.NONE)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
@@ -134,6 +137,7 @@ public class MocktailResource {
     @Path("{mocktail}")
     @Operation(summary = "Add mocktail")
     @Counted(name = "COUNT-addMMocktail", description = "Count how many times the addMMocktail() was called")
+    @CircuitBreaker(failureRatio = 0.25, requestVolumeThreshold = 10)
     @Timed(name = "TIME-addMMocktail", description = "How long it takes to invoke the addMMocktail()", unit = MetricUnits.MILLISECONDS)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
     public Response addMocktail(@PathParam("mocktail") String mocktail) {
@@ -157,6 +161,7 @@ public class MocktailResource {
     @Path("{id}")
     @Operation(summary = "Update mocktail")
     @Counted(name = "COUNT-updateMocktail", description = "Count how many times the updateMocktail() was called")
+    @CircuitBreaker(failureRatio = 0.25, requestVolumeThreshold = 10)
     @Timed(name = "TIME-updateMocktail", description = "How long it takes to invoke the updateMocktail()", unit = MetricUnits.MILLISECONDS)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
     public Response updateMocktail(@PathParam("id") int id, @QueryParam("mocktail") String mocktail) {
@@ -181,6 +186,7 @@ public class MocktailResource {
     @Operation(summary = "Delete mocktail by id")
     @Counted(name = "COUNT-deleteMocktail", description = "Count how many times the deleteMocktail() was called")
     @Timed(name = "TIME-deleteMocktail", description = "How long it takes to invoke the deleteMocktail()", unit = MetricUnits.MILLISECONDS)
+    @CircuitBreaker(failureRatio = 0.25, requestVolumeThreshold = 10)
     // @Gauge(name = "GAUGE-deleteMocktail", description = "Time of
     // deleteMocktail()", unit = MetricUnits.NONE)
     @APIResponses(value = @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Mocktail.class))))
